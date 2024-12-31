@@ -1,0 +1,30 @@
+| 1 | 2 | 3 | 4 | 9 | 10 | 20 |
+
+count (ini) : 0
+temp count (ini): 1
+
+ele : 2
+temp count (if) : 2
+
+ele : 3
+temp count (if) : 3
+
+ele : 4
+temp count (if) : 4
+
+ele : 9
+
+count (else) : 4
+temp count (else): 1
+
+ele : 10
+temp count (if) : 2
+
+ele : 20
+
+count (else) : 4
+temp count (else): 1
+
+count (fnl) : 4
+temp count (fnl): 1
+4
