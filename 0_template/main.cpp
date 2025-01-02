@@ -12,6 +12,10 @@ public:
 };
 
 int main() {
+  // Speed up input/output
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+
   solution s;
 
   string name;
