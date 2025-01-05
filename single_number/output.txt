@@ -1,0 +1,7 @@
+num(ini) : 0
+num(it): 4
+num(it): 5
+num(it): 7
+num(it): 6
+num(it): 4
+4
