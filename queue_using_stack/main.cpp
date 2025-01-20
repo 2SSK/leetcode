@@ -4,9 +4,7 @@
 // ==================================
 
 #include <bits/stdc++.h>
-#include <ios>
-#include <sstream>
-#include <string>
+
 using namespace std;
 
 class QuWtStk {
