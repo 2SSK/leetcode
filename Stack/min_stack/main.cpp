@@ -46,6 +46,13 @@ int MinStack::getMin() {
   return minVal;
 }
 
+template <typename T> stringstream readInput() {
+  string inputStr;
+  getline(cin, inputStr);
+  stringstream ss(inputStr);
+  return ss;
+};
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -56,18 +63,13 @@ int main() {
   cin.ignore();
 
   vector<string> operations(size);
-  string userOperations;
-  getline(cin, userOperations);
-  stringstream ss(userOperations);
-  for (int i{}; i < size; i++) {
-    ss >> operations[i];
-  }
+  stringstream ss = readInput<string>();
 
   vector<int> userInputs(size, INT_MIN);
-  string inputStr;
-  getline(cin, inputStr);
-  stringstream ii(inputStr);
+  stringstream ii = readInput<string>();
+
   for (int i{}; i < size; i++) {
+    ss >> operations[i];
     if (operations[i] == "push") {
       ii >> userInputs[i];
     }
