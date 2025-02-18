@@ -6,9 +6,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class solution {
+class Solution {
 public:
-  void greet(string name) { cout << "Hello, " << name << "!\n"; }
+  void greet(string name);
 };
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  solution s;
+  Solution s;
 
   string name;
   cin >> name;
@@ -25,3 +25,5 @@ int main() {
 
   return 0;
 }
+
+void Solution::greet(string name) { cout << "Hello, " << name << "!\n"; }
