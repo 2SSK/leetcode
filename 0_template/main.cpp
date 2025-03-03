@@ -18,10 +18,17 @@ int main() {
 
   Solution s;
 
-  string name;
-  cin >> name;
+  int size;
+  cin >> size;
 
-  s.greet(name);
+  vector<string> names(size);
+  for (int i{}; i < size; i++) {
+    cin >> names[i];
+  }
+
+  for (auto name : names) {
+    s.greet(name);
+  }
 
   return 0;
 }
