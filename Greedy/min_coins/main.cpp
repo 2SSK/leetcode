@@ -8,19 +8,6 @@ using namespace std;
 
 class Solution {
 public:
-  template <typename T> vector<T> readInput() {
-    vector<T> inputArr;
-    string input;
-    getline(cin, input);
-    stringstream ss(input);
-    T value;
-    while (ss >> value) {
-      inputArr.push_back(value);
-    }
-
-    return inputArr;
-  }
-
   template <typename T> void printArr(vector<T> arr) {
     int n = arr.size();
     for (int i = 0; i < n; i++) {
@@ -33,6 +20,8 @@ public:
       }
     }
   }
+
+  vector<int> minPartition(int N);
 };
 
 int main() {
@@ -42,10 +31,27 @@ int main() {
 
   Solution solution;
 
-  vector<int> input = solution.readInput<int>();
+  int N;
+  cin >> N;
 
-  cout << "Array: ";
-  solution.printArr(input);
+  vector<int> output = solution.minPartition(N);
+  cout << "Output : ";
+  solution.printArr(output);
 
   return 0;
 }
+
+vector<int> Solution::minPartition(int N) {
+  vector<int> output;
+
+  vector<int> currency{2000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
+
+  for (int i = 0; i < currency.size(); i++) {
+    while (N >= currency[i]) {
+      N -= currency[i];
+      output.push_back(currency[i]);
+    }
+  }
+
+  return output;
+};
