@@ -1,0 +1,4 @@
+Output: word
+Output: l10n
+Output: i18n
+Output: p43s
