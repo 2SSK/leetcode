@@ -1,0 +1,1 @@
+Output: | This    is    an | example  of text | justification    |
