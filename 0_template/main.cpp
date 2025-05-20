@@ -25,9 +25,9 @@ public:
     int n = arr.size();
     for (int i = 0; i < n; i++) {
       if (i == 0) {
-        cout << "| " << arr[i] << " | ";
+        cout << "[ " << arr[i] << " | ";
       } else if (i == n - 1) {
-        cout << arr[i] << " |\n";
+        cout << arr[i] << " ]\n";
       } else {
         cout << arr[i] << " | ";
       }
