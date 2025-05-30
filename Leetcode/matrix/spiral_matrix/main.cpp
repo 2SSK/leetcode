@@ -65,8 +65,11 @@ int main() {
     inputArr.push_back(input);
   }
 
+  cout << "Input: ";
+  solution.printArr(inputArr);
+
   vector<int> result = solution.spiralOrder(inputArr);
-  cout << "Output: ";
+  cout << "\nOutput: ";
   solution.printArr(result);
 
   return 0;
