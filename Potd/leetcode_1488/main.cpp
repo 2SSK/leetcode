@@ -28,6 +28,8 @@ public:
       }
     }
   }
+
+  vector<int> avoidFlood(vector<int> &rains);
 };
 
 int main() {
@@ -39,8 +41,37 @@ int main() {
 
   vector<int> input = solution.readInput<int>();
 
-  cout << "Array: ";
-  solution.printArr(input);
+  vector<int> result = solution.avoidFlood(input);
+
+  cout << "Output: ";
+  solution.printArr(result);
 
   return 0;
+}
+
+vector<int> Solution::avoidFlood(vector<int> &rains) {
+  int n = rains.size();
+  vector<int> result(n, 1);
+  map<int, int> full_lakes;
+  set<int> sunny_days;
+
+  for (int i = 0; i < n; ++i) {
+    int lake = rains[i];
+    if (lake == 0) {
+      sunny_days.insert(i);
+    } else {
+      if (full_lakes.count(lake)) {
+        auto it = sunny_days.upper_bound(full_lakes[lake]);
+        if (it == sunny_days.end()) {
+          return {};
+        }
+        result[*it] = lake;
+        sunny_days.erase(it);
+      }
+      result[i] = -1;
+      full_lakes[lake] = i;
+    }
+  }
+
+  return result;
 }
