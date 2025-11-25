@@ -16,7 +16,7 @@ public:
     return inputArr;
   }
 
-  int findFinalValue(vector<int> &nums, int original);
+  int maxSubarraySum(vector<int> &arr, int k);
 };
 
 int main() {
@@ -27,21 +27,31 @@ int main() {
   Solution solution;
 
   vector<int> input = solution.readInput<int>();
+  int k;
+  cin >> k;
 
-  int original;
-  cin >> original;
-
-  cout << "Output: " << solution.findFinalValue(input, original) << "\n";
+  cout << "Output: " << solution.maxSubarraySum(input, k) << endl;
 
   return 0;
 }
 
-int Solution::findFinalValue(vector<int> &nums, int original) {
-  int target = original;
-  unordered_set<int> numSet(nums.begin(), nums.end());
-  while (numSet.count(target)) {
-    target *= 2;
+int Solution::maxSubarraySum(vector<int> &arr, int k) {
+  int n = arr.size();
+
+  if (n < k)
+    return 0;
+
+  int sum = 0;
+  for (size_t i = 0; i < k; i++) {
+    sum += arr[i];
   }
 
-  return target;
+  int maxSum = sum;
+
+  for (int i = k; i < n; i++) {
+    sum = sum - arr[i - k] + arr[i];
+    maxSum = max(maxSum, sum);
+  }
+
+  return maxSum;
 }
