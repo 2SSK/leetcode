@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -30,6 +31,23 @@ public:
   }
 };
 
+vector<int> leaders(vector<int> &arr) {
+  vector<int> ans;
+
+  int rightMax = INT_MIN;
+
+  for (int i = arr.size() - 1; i >= 0; i--) {
+    if (arr[i] >= rightMax) {
+      ans.push_back(arr[i]);
+      rightMax = arr[i];
+    }
+  }
+
+  reverse(ans.begin(), ans.end());
+
+  return ans;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -37,15 +55,11 @@ int main() {
 
   Solution solution;
 
-  int test_cases;
-  cin >> test_cases;
-  cin.ignore();
+  vector<int> input = solution.readInput<int>();
 
-  while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
-  }
+  vector<int> output = leaders(input);
+  cout << "Output: ";
+  solution.printArr(output);
 
   return 0;
 }

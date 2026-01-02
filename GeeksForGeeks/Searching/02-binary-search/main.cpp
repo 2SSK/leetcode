@@ -15,20 +15,26 @@ public:
 
     return inputArr;
   }
+};
 
-  template <typename T> void printArr(vector<T> arr) {
-    int n = arr.size();
-    for (int i = 0; i < n; i++) {
-      if (i == 0) {
-        cout << "[ " << arr[i] << " | ";
-      } else if (i == n - 1) {
-        cout << arr[i] << " ]\n";
-      } else {
-        cout << arr[i] << " | ";
-      }
+int binarysearch(vector<int> &arr, int k) {
+  int left = 0;
+  int right = arr.size() - 1;
+
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+
+    if (arr[mid] == k) {
+      return mid;
+    } else if (arr[mid] < k) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
     }
   }
-};
+
+  return -1;
+}
 
 int main() {
   // Speed up input/output
@@ -42,9 +48,12 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<int> input = solution.readInput<int>();
+    int k;
+    cin >> k;
+    cin.ignore();
+
+    cout << "Output: " << binarysearch(input, k) << endl;
   }
 
   return 0;

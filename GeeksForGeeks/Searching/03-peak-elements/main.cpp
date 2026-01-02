@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <ios>
 using namespace std;
 
 class Solution {
@@ -15,20 +16,17 @@ public:
 
     return inputArr;
   }
+};
 
-  template <typename T> void printArr(vector<T> arr) {
-    int n = arr.size();
-    for (int i = 0; i < n; i++) {
-      if (i == 0) {
-        cout << "[ " << arr[i] << " | ";
-      } else if (i == n - 1) {
-        cout << arr[i] << " ]\n";
-      } else {
-        cout << arr[i] << " | ";
-      }
+int peakElement(vector<int> &arr) {
+  for (int i = 1; i < arr.size() - 1; i++) {
+    if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) {
+      return true;
     }
   }
-};
+
+  return 0;
+}
 
 int main() {
   // Speed up input/output
@@ -42,9 +40,9 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<int> input = solution.readInput<int>();
+    cout << "Output: " << boolalpha << static_cast<bool>(peakElement(input))
+         << endl;
   }
 
   return 0;

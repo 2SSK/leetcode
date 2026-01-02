@@ -30,6 +30,16 @@ public:
   }
 };
 
+int search(vector<int> &arr, int x) {
+  for (int i = 0; i < arr.size(); i++) {
+    if (arr[i] == x) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -43,8 +53,11 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    int x;
+    cin >> x;
+    cin.ignore();
+
+    cout << "Output: " << search(arr, x) << endl;
   }
 
   return 0;

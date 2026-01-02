@@ -30,6 +30,27 @@ public:
   }
 };
 
+vector<int> subarraySum(vector<int> &arr, int target) {
+  int n = arr.size();
+  int left = 0;
+  int sum = 0;
+
+  for (int right = 0; right < n; right++) {
+    sum += arr[right];
+
+    while (sum > target && left <= right) {
+      sum -= arr[left];
+      left++;
+    }
+
+    if (sum == target) {
+      return vector<int>(arr.begin() + left, arr.begin() + right + 1);
+    }
+  }
+
+  return {};
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -37,15 +58,13 @@ int main() {
 
   Solution solution;
 
-  int test_cases;
-  cin >> test_cases;
-  cin.ignore();
+  vector<int> input = solution.readInput<int>();
+  int target;
+  cin >> target;
 
-  while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
-  }
+  vector<int> output = subarraySum(input, target);
+  cout << "Output: ";
+  solution.printArr(output);
 
   return 0;
 }

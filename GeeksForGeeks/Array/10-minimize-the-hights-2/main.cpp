@@ -30,6 +30,24 @@ public:
   }
 };
 
+int getMinDiff(vector<int> &arr, int k) {
+  int n = arr.size();
+  sort(arr.begin(), arr.end());
+  int res = arr[n - 1] - arr[0];
+
+  for (int i = 1; i < n; i++) {
+    if (arr[i] - k < 0) {
+      continue;
+    }
+
+    int minH = min(arr[0] + k, arr[i] - k);
+    int maxH = max(arr[i - 1] + k, arr[n - 1] - k);
+    res = min(res, maxH - minH);
+  }
+
+  return res;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -37,14 +55,16 @@ int main() {
 
   Solution solution;
 
-  int test_cases;
-  cin >> test_cases;
+  int test_case;
+  cin >> test_case;
   cin.ignore();
 
-  while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+  while (test_case--) {
+    int k;
+    cin >> k;
+    cin.ignore();
+    vector<int> input = solution.readInput<int>();
+    cout << "Output: " << getMinDiff(input, k) << endl;
   }
 
   return 0;

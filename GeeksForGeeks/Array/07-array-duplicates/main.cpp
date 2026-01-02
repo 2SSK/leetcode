@@ -30,6 +30,22 @@ public:
   }
 };
 
+vector<int> findDuplicates(vector<int> &arr) {
+  vector<int> res;
+
+  for (int i = 0; i < arr.size(); i++) {
+    int idx = abs(arr[i]) - 1;
+
+    if (arr[idx] > 0) {
+      arr[idx] = -arr[idx];
+    } else {
+      res.push_back(abs(arr[i]));
+    }
+  }
+
+  return res;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -37,15 +53,11 @@ int main() {
 
   Solution solution;
 
-  int test_cases;
-  cin >> test_cases;
-  cin.ignore();
+  vector<int> input = solution.readInput<int>();
 
-  while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
-  }
+  vector<int> output = findDuplicates(input);
+  cout << "Output: ";
+  solution.printArr(output);
 
   return 0;
 }
