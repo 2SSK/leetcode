@@ -20,15 +20,27 @@ public:
     int n = arr.size();
     for (int i = 0; i < n; i++) {
       if (i == 0) {
-        cout << "[ " << arr[i] << ", ";
+        cout << "[ " << arr[i] << " | ";
       } else if (i == n - 1) {
         cout << arr[i] << " ]\n";
       } else {
-        cout << arr[i] << ", ";
+        cout << arr[i] << " | ";
       }
     }
   }
 };
+bool isSubset(vector<int> &a, vector<int> &b) {
+  multiset<int> hashSet(a.begin(), a.end());
+
+  for (int num : b) {
+    if (hashSet.find(num) == hashSet.end()) {
+      return false;
+    }
+    hashSet.erase(hashSet.find(num));
+  }
+
+  return true;
+}
 
 int main() {
   // Speed up input/output
@@ -42,9 +54,10 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<int> a = solution.readInput<int>();
+    vector<int> b = solution.readInput<int>();
+
+    cout << "Output: " << boolalpha << isSubset(a, b) << endl;
   }
 
   return 0;

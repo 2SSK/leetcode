@@ -30,6 +30,27 @@ public:
   }
 };
 
+void zigZag(vector<int> &arr) {
+  for (int i = 0; i < arr.size() - 1; i++) {
+    if ((i % 2 == 0 && arr[i] > arr[i + 1]) ||
+        (i % 2 != 0 && arr[i] < arr[i + 1])) {
+      swap(arr[i], arr[i + 1]);
+    }
+  }
+}
+
+bool isZigZag(vector<int> &arr) {
+
+  for (int i = 1; i < arr.size() - 1; i++) {
+    if ((i % 2 == 0 && arr[i] > arr[i + 1]) ||
+        (i % 2 != 0 && arr[i] < arr[i + 1])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -43,8 +64,9 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+
+    zigZag(arr);
+    cout << "Output: " << boolalpha << isZigZag(arr) << endl;
   }
 
   return 0;

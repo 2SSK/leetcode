@@ -20,15 +20,35 @@ public:
     int n = arr.size();
     for (int i = 0; i < n; i++) {
       if (i == 0) {
-        cout << "[ " << arr[i] << ", ";
+        cout << "[ " << arr[i] << " | ";
       } else if (i == n - 1) {
         cout << arr[i] << " ]\n";
       } else {
-        cout << arr[i] << ", ";
+        cout << arr[i] << " | ";
       }
     }
   }
 };
+
+int findEquilibrium(vector<int> &arr) {
+  int prefSum = 0, total = 0;
+
+  for (int ele : arr) {
+    total += ele;
+  }
+
+  for (int i = 0; i < arr.size(); i++) {
+    int suffSum = total - prefSum - arr[i];
+
+    if (prefSum == suffSum) {
+      return i;
+    }
+
+    prefSum += arr[i];
+  }
+
+  return -1;
+}
 
 int main() {
   // Speed up input/output
@@ -43,8 +63,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << findEquilibrium(arr) << endl;
   }
 
   return 0;

@@ -28,6 +28,29 @@ public:
       }
     }
   }
+
+  vector<int> findTwoElement(vector<int> &arr) {
+    int n = arr.size();
+    int repeating{-1}, missing{-1};
+
+    sort(arr.begin(), arr.end());
+
+    for (int i = 0; i < n - 1; i++) {
+      if (arr[i] == arr[i + 1]) {
+        repeating = arr[i];
+      } else if (arr[i + 1] != arr[i] + 1) {
+        missing = arr[i] + 1;
+      }
+    }
+
+    if (arr[0] != 1) {
+      missing = 1;
+    } else if (arr[n - 1] != n) {
+      missing = n;
+    }
+
+    return {repeating, missing};
+  }
 };
 
 int main() {
@@ -43,8 +66,10 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
+
+    vector<int> output = solution.findTwoElement(arr);
     cout << "Output: ";
-    solution.printArr(arr);
+    solution.printArr(output);
   }
 
   return 0;

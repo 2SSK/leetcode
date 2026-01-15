@@ -3,6 +3,21 @@ using namespace std;
 
 class Solution {
 public:
+  typedef long long int ll;
+  long long int minValue(vector<int> &arr1, vector<int> &arr2) {
+    int n = arr1.size();
+    ll ans = 0;
+
+    sort(arr1.begin(), arr1.end());
+    sort(arr2.begin(), arr2.end(), greater());
+
+    for (int i = 0; i < n; i++) {
+      ans += arr1[i] * arr2[i];
+    }
+
+    return ans;
+  }
+
   template <typename T> vector<T> readInput() {
     vector<T> inputArr;
     string input;
@@ -42,9 +57,10 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<int> arr1 = solution.readInput<int>();
+    vector<int> arr2 = solution.readInput<int>();
+
+    cout << "Output: " << solution.minValue(arr1, arr2) << endl;
   }
 
   return 0;

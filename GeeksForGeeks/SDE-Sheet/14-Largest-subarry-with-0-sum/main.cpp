@@ -28,6 +28,28 @@ public:
       }
     }
   }
+
+  int maxLength(vector<int> &arr) {
+    int maxLen = 0;
+    int sum = 0;
+    unordered_map<int, int> prefixIndex;
+
+    for (int i = 0; i < arr.size(); i++) {
+      sum += arr[i];
+
+      if (sum == 0) {
+        maxLen = i + 1;
+      }
+
+      if (prefixIndex.find(sum) != prefixIndex.end()) {
+        maxLen = max(maxLen, i - prefixIndex[sum]);
+      } else {
+        prefixIndex[sum] = i;
+      }
+    }
+
+    return maxLen;
+  }
 };
 
 int main() {
@@ -43,8 +65,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << solution.maxLength(arr) << endl;
   }
 
   return 0;

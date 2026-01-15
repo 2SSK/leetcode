@@ -28,6 +28,27 @@ public:
       }
     }
   }
+
+  int recurBinarySearch(vector<int> &arr, int low, int high, int target) {
+    if (low > high)
+      return -1;
+
+    int mid = low + (high - low) / 2;
+
+    if (arr[mid] == target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      return recurBinarySearch(arr, mid + 1, high, target);
+    } else {
+      return recurBinarySearch(arr, low, mid - 1, target);
+    }
+
+    return -1;
+  }
+
+  int binarysearch(vector<int> &arr, int k) {
+    return recurBinarySearch(arr, 0, arr.size() - 1, k);
+  }
 };
 
 int main() {
@@ -43,8 +64,11 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    int target;
+    cin >> target;
+    cin.ignore();
+
+    cout << "Output: " << solution.binarysearch(arr, target) << endl;
   }
 
   return 0;

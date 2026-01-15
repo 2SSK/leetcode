@@ -20,15 +20,30 @@ public:
     int n = arr.size();
     for (int i = 0; i < n; i++) {
       if (i == 0) {
-        cout << "[ " << arr[i] << ", ";
+        cout << "[ " << arr[i] << " | ";
       } else if (i == n - 1) {
         cout << arr[i] << " ]\n";
       } else {
-        cout << arr[i] << ", ";
+        cout << arr[i] << " | ";
       }
     }
   }
 };
+
+int missingNum(vector<int> &nums) {
+  int n = nums.size() + 1;
+
+  int totalSum = n * (n + 1) / 2;
+  int arrSum = 0;
+
+  for (int num : nums) {
+    arrSum += num;
+  }
+
+  int diff = abs(totalSum - arrSum);
+
+  return (diff == 0) ? n + 1 : diff;
+}
 
 int main() {
   // Speed up input/output
@@ -43,8 +58,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << missingNum(arr) << endl;
   }
 
   return 0;

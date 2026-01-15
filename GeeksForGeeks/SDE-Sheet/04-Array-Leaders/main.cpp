@@ -20,15 +20,32 @@ public:
     int n = arr.size();
     for (int i = 0; i < n; i++) {
       if (i == 0) {
-        cout << "[ " << arr[i] << ", ";
+        cout << "[ " << arr[i] << " , ";
       } else if (i == n - 1) {
         cout << arr[i] << " ]\n";
       } else {
-        cout << arr[i] << ", ";
+        cout << arr[i] << " , ";
       }
     }
   }
 };
+
+vector<int> leaders(vector<int> &arr) {
+  vector<int> result;
+
+  int rightMax = INT_MIN;
+
+  for (int i = arr.size() - 1; i >= 0; i--) {
+    if (arr[i] >= rightMax) {
+      result.push_back(arr[i]);
+      rightMax = arr[i];
+    }
+  }
+
+  reverse(result.begin(), result.end());
+
+  return result;
+}
 
 int main() {
   // Speed up input/output
@@ -43,8 +60,10 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
+
+    vector<int> output = leaders(arr);
     cout << "Output: ";
-    solution.printArr(arr);
+    solution.printArr(output);
   }
 
   return 0;

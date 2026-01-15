@@ -30,6 +30,35 @@ public:
   }
 };
 
+string longestCommonPrefix(vector<string> arr) {
+  int n = arr.size();
+
+  if (n == 1)
+    return arr[0];
+
+  string prefix = "";
+  bool include;
+
+  for (int i = 0; i < arr[0].length(); i++) {
+    include = true;
+
+    for (int j = 1; j < n; ++j) {
+      if (i >= arr[j].length() || arr[0][i] != arr[j][i]) {
+        include = false;
+        break;
+      }
+    }
+
+    if (!include) {
+      break;
+    }
+
+    prefix += arr[0][i];
+  }
+
+  return prefix;
+}
+
 int main() {
   // Speed up input/output
   ios::sync_with_stdio(false);
@@ -42,9 +71,8 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<string> arr = solution.readInput<string>();
+    cout << "Output: \"" << longestCommonPrefix(arr) << "\"" << endl;
   }
 
   return 0;

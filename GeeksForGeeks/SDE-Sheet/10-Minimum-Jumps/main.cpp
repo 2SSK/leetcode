@@ -28,6 +28,28 @@ public:
       }
     }
   }
+
+  int minJumpsRecur(int i, vector<int> &arr) {
+    if (i > arr.size() - 1)
+      return 0;
+
+    int ans = INT_MAX;
+
+    for (int j = i + 1; j <= i + arr[i]; j++) {
+      int val = minJumpsRecur(j, arr);
+      if (val != INT_MAX) {
+        ans = min(ans, 1 + val);
+      }
+    }
+
+    return ans;
+  }
+
+  int minJumps(vector<int> &arr) {
+    int ans = minJumpsRecur(0, arr);
+
+    return (ans == INT_MAX) ? -1 : ans;
+  }
 };
 
 int main() {
@@ -43,8 +65,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << solution.minJumps(arr) << endl;
   }
 
   return 0;

@@ -28,6 +28,31 @@ public:
       }
     }
   }
+
+  int minPlatform(vector<int> &arr, vector<int> &dep) {
+    int n = arr.size();
+
+    int platforms = 0;
+    int maxPlatforms = 0;
+
+    sort(arr.begin(), arr.end());
+    sort(dep.begin(), dep.end());
+
+    int i = 0, j = 0;
+
+    while (i < n) {
+      if (arr[i] <= dep[j]) {
+        platforms++;
+        i++;
+        maxPlatforms = max(maxPlatforms, platforms);
+      } else {
+        platforms--;
+        j++;
+      }
+    }
+
+    return maxPlatforms;
+  }
 };
 
 int main() {
@@ -42,9 +67,9 @@ int main() {
   cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    vector<int> arr1 = solution.readInput<int>();
+    vector<int> arr2 = solution.readInput<int>();
+    cout << "Output: " << solution.minPlatform(arr1, arr2) << endl;
   }
 
   return 0;

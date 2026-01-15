@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
+#include <queue>
 using namespace std;
 
 class Solution {
+private:
 public:
   template <typename T> vector<T> readInput() {
     vector<T> inputArr;
@@ -28,6 +30,19 @@ public:
       }
     }
   }
+
+  int kthSmallest(vector<int> &arr, int k) {
+    priority_queue<int> pq;
+
+    for (int ele : arr) {
+      pq.push(ele);
+
+      if (pq.size() > k)
+        pq.pop();
+    }
+
+    return pq.top();
+  }
 };
 
 int main() {
@@ -43,8 +58,11 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    int k;
+    cin >> k;
+    cin.ignore();
+
+    cout << "Output: " << solution.kthSmallest(arr, k) << endl;
   }
 
   return 0;

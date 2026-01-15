@@ -28,6 +28,18 @@ public:
       }
     }
   }
+
+  int maxSubarraySum(vector<int> &arr) {
+    int ans = arr[0];
+    int maxEnding = arr[0];
+
+    for (int i = 1; i < arr.size(); i++) {
+      maxEnding = max(arr[i], maxEnding + arr[i]);
+      ans = max(ans, maxEnding);
+    }
+
+    return ans;
+  }
 };
 
 int main() {
@@ -43,8 +55,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << solution.maxSubarraySum(arr) << endl;
   }
 
   return 0;

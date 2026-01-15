@@ -1,0 +1,3 @@
+Output: 4
+Output: 6
+Output: 2

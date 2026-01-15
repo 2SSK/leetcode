@@ -28,6 +28,42 @@ public:
       }
     }
   }
+
+  bool isBalanced(string &s) {
+    stack<char> st;
+
+    for (char it : s) {
+      if (it == '(' || it == '{' || it == '[') {
+        st.push(it);
+      } else {
+        if (st.empty())
+          return false;
+
+        switch (it) {
+        case ')':
+          if (st.top() != '(') {
+            return false;
+          }
+          st.pop();
+          break;
+        case '}':
+          if (st.top() != '{') {
+            return false;
+          }
+          st.pop();
+          break;
+        case ']':
+          if (st.top() != '[') {
+            return false;
+          }
+          st.pop();
+          break;
+        }
+      }
+    }
+
+    return st.empty();
+  }
 };
 
 int main() {
@@ -39,12 +75,12 @@ int main() {
 
   int test_cases;
   cin >> test_cases;
-  cin.ignore();
 
   while (test_cases--) {
-    vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    string s;
+    cin >> s;
+
+    cout << "Output: " << boolalpha << solution.isBalanced(s) << endl;
   }
 
   return 0;
