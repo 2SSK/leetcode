@@ -18,19 +18,31 @@ public:
 
   template <typename T> void printArr(vector<T> arr) {
     int n = arr.size();
-    if (n > 1) {
-      for (int i = 0; i < n; i++) {
-        if (i == 0) {
-          cout << "[ " << arr[i] << ", ";
-        } else if (i == n - 1) {
-          cout << arr[i] << " ]\n";
-        } else {
-          cout << arr[i] << ", ";
-        }
+    for (int i = 0; i < n; i++) {
+      if (i == 0) {
+        cout << "[ " << arr[i] << ", ";
+      } else if (i == n - 1) {
+        cout << arr[i] << " ]\n";
+      } else {
+        cout << arr[i] << ", ";
       }
-    } else {
-      cout << "[ " << arr[0] << " ]";
     }
+  }
+
+  int getSecondLargest(vector<int> &arr) {
+    int largest = arr[0];
+    int secondLargest = -1;
+
+    for (int num : arr) {
+      if (num > largest) {
+        secondLargest = largest;
+        largest = num;
+      } else if (num > secondLargest && num < largest) {
+        secondLargest = num;
+      }
+    }
+
+    return secondLargest;
   }
 };
 
@@ -47,8 +59,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
-    cout << "Output: ";
-    solution.printArr(arr);
+    cout << "Output: " << solution.getSecondLargest(arr) << "\n";
   }
 
   return 0;

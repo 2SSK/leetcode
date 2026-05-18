@@ -32,6 +32,15 @@ public:
       cout << "[ " << arr[0] << " ]";
     }
   }
+
+  void reverseArray(vector<int> &arr) {
+    int s = 0;
+    int e = arr.size() - 1;
+
+    while (s <= e) {
+      swap(arr[s++], arr[e--]);
+    }
+  }
 };
 
 int main() {
@@ -47,6 +56,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
+    solution.reverseArray(arr);
     cout << "Output: ";
     solution.printArr(arr);
   }

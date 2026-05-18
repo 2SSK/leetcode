@@ -18,18 +18,24 @@ public:
 
   template <typename T> void printArr(vector<T> arr) {
     int n = arr.size();
-    if (n > 1) {
-      for (int i = 0; i < n; i++) {
-        if (i == 0) {
-          cout << "[ " << arr[i] << ", ";
-        } else if (i == n - 1) {
-          cout << arr[i] << " ]\n";
-        } else {
-          cout << arr[i] << ", ";
-        }
+    for (int i = 0; i < n; i++) {
+      if (i == 0) {
+        cout << "[ " << arr[i] << ", ";
+      } else if (i == n - 1) {
+        cout << arr[i] << " ]\n";
+      } else {
+        cout << arr[i] << ", ";
       }
-    } else {
-      cout << "[ " << arr[0] << " ]";
+    }
+  }
+
+  void pushZerosToEnd(vector<int> &arr) {
+    int nonZeroIndex = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+      if (arr[i] != 0) {
+        swap(arr[nonZeroIndex++], arr[i]);
+      }
     }
   }
 };
@@ -47,6 +53,7 @@ int main() {
 
   while (test_cases--) {
     vector<int> arr = solution.readInput<int>();
+    solution.pushZerosToEnd(arr);
     cout << "Output: ";
     solution.printArr(arr);
   }
